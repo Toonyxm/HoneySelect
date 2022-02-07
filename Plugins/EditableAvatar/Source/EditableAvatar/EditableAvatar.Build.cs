@@ -4,20 +4,20 @@ namespace UnrealBuildTool.Rules
 {
 public class EditableAvatar : ModuleRules
 {
-	public EditableAvatar(TargetInfo Target)
+	public EditableAvatar(ReadOnlyTargetRules Target) : base(Target)
 	{
+		PrivatePCHHeaderFile = "Private/EditableAvatarPrivatePCH.h";
+
 		PublicIncludePaths.AddRange(
 		    new string[]
 		{
 			// ... add public include paths required here ...
-			"EditableAvatar/Public",
 		}
 		);
 
 		PrivateIncludePaths.AddRange(
 		    new string[]
 		{
-			"EditableAvatar/Private",
 			// ... add other private include paths required here ...
 		}
 		);

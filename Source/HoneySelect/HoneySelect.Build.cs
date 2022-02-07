@@ -4,7 +4,7 @@ using UnrealBuildTool;
 
 public class HoneySelect : ModuleRules
 {
-	public HoneySelect(TargetInfo Target)
+	public HoneySelect(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
@@ -17,5 +17,9 @@ public class HoneySelect : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+
+		bLegacyPublicIncludePaths = false;
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
 	}
 }

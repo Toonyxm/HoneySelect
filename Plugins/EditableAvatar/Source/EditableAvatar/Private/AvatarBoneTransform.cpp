@@ -1,4 +1,3 @@
-#include "EditableAvatarPrivatePCH.h"
 #include "AvatarBoneTransform.h"
 
 FAvatarBoneTransform::FAvatarBoneTransform()

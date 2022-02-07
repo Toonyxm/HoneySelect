@@ -4,8 +4,10 @@ namespace UnrealBuildTool.Rules
 {
 public class EditableAvatarEditor : ModuleRules
 {
-	public EditableAvatarEditor(TargetInfo Target)
+	public EditableAvatarEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
+		PrivatePCHHeaderFile = "Private/EditableAvatarEditorPrivatePCH.h";
+
 		PublicIncludePaths.AddRange(
 		    new string[]
 		{

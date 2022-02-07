@@ -1,7 +1,7 @@
 // Copyright Tencent Games, Inc. All Rights Reserved
 
-#include "HoneySelect.h"
 #include "AvatarBoneInfo.h"
+#include "HoneySelect.h"
 #include "Components/PoseableMeshComponent.h"
 
 void UAvatarBoneInfo::LoadBoneCategory(const FString& Filename, const FString& NameFilename)
@@ -9,7 +9,7 @@ void UAvatarBoneInfo::LoadBoneCategory(const FString& Filename, const FString& N
 	check(SourceBoneNames.Num() > 0);
 	if (BoneCategoryMap.Num() > 0)
 		return;
-	FString FullPath = FPaths::GameContentDir() + Filename;
+	FString FullPath = FPaths::ProjectContentDir() + Filename;
 	FString FileContent;
 	if (FFileHelper::LoadFileToString(FileContent, *FullPath))
 	{
@@ -95,7 +95,7 @@ void UAvatarBoneInfo::SetEditMesh(class USkinnedMeshComponent* Mesh)
 			int32 BoneIndex = SkeletalMesh->GetBoneIndex(BoneNames[i]);
 			if (BoneIndex != INDEX_NONE)
 			{
-				FTransform Transform = SkeletalMesh->BoneSpaceTransforms[BoneIndex];
+				FTransform Transform = SkeletalMesh->GetBoneSpaceTransforms()[BoneIndex];
 				BoneTransforms[i].Location = Transform.GetLocation();
 				BoneTransforms[i].Rotation = Transform.GetRotation().Euler();
 				BoneTransforms[i].Scale = Transform.GetScale3D();
@@ -106,7 +106,7 @@ void UAvatarBoneInfo::SetEditMesh(class USkinnedMeshComponent* Mesh)
 
 void UAvatarBoneInfo::LoadPreset(int32 Index)
 {
-	FString Filename = FPaths::GameSavedDir() + TEXT("Avatar/") + EditMesh->GetName() + FString::FromInt(Index);
+	FString Filename = FPaths::ProjectSavedDir() + TEXT("Avatar/") + EditMesh->GetName() + FString::FromInt(Index);
 	TArray<uint8> DataBuffer;
 	if (FFileHelper::LoadFileToArray(DataBuffer, *Filename))
 	{
@@ -132,7 +132,7 @@ void UAvatarBoneInfo::LoadPreset(int32 Index)
 
 void UAvatarBoneInfo::SavePreset(int32 Index)
 {
-	FString Filename = FPaths::GameSavedDir() + TEXT("Avatar/") + EditMesh->GetName() + FString::FromInt(Index);
+	FString Filename = FPaths::ProjectSavedDir() + TEXT("Avatar/") + EditMesh->GetName() + FString::FromInt(Index);
 	TArray<uint8> DataBuffer;
 	DataBuffer.SetNum(BoneCategoryValues.Num() * sizeof(float));
 	FMemory::Memcpy(DataBuffer.GetData(), BoneCategoryValues.GetData(), DataBuffer.Num());
@@ -255,7 +255,7 @@ void UAvatarBoneInfo::LoadNamesToArray(const FString& Filename, TArray<FName>& N
 {
 	if (Names.Num() > 0)
 		return;
-	FString FullPath = FPaths::GameContentDir() + Filename;
+	FString FullPath = FPaths::ProjectContentDir() + Filename;
 	FString FileContent;
 	if (FFileHelper::LoadFileToString(FileContent, *FullPath))
 	{
@@ -272,7 +272,7 @@ void UAvatarBoneInfo::LoadBoneKeys(const FString& Filename)
 {
 	if (BoneKeyMap.Num() > 0)
 		return;
-	FString FullPath = FPaths::GameContentDir() + Filename;
+	FString FullPath = FPaths::ProjectContentDir() + Filename;
 	FString FileContent;
 	if (FFileHelper::LoadFileToString(FileContent, *FullPath))
 	{

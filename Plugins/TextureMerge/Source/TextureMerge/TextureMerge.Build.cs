@@ -13,22 +13,19 @@ using UnrealBuildTool;
 
 public class TextureMerge : ModuleRules
 {
-	public TextureMerge(TargetInfo Target)
+	public TextureMerge(ReadOnlyTargetRules Target) : base(Target)
 	{
-		
+		PrivatePCHHeaderFile = "Private/TextureMergePrivatePCH.h";
+
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"TextureMerge/Public"
-				
 				// ... add public include paths required here ...
 			}
-			);
+            );
 				
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"TextureMerge/Private",
-				
 				// ... add other private include paths required here ...
 			}
 			);

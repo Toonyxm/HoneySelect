@@ -5,7 +5,6 @@
 
 	copyright 2015
 */
-#include "VictoryUMGPrivatePCH.h"
 #include "JoyColorWheel.h"
 
 //LOCTEXT

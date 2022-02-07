@@ -9,9 +9,11 @@ using UnrealBuildTool;
 
 public class VictoryUMG : ModuleRules
 {
-	public VictoryUMG(TargetInfo Target)
+	public VictoryUMG(ReadOnlyTargetRules Target) : base(Target)
 	{
-        PublicDependencyModuleNames.AddRange(
+		PrivatePCHHeaderFile = "Private/VictoryUMGPrivatePCH.h";
+
+		PublicDependencyModuleNames.AddRange(
 			new string[] { 
 				"Core", 
 				"CoreUObject", 

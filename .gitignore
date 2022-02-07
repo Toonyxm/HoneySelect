@@ -12,3 +12,4 @@ Intermediate
 *.pdb
 *.modules
 *.sln
+/.vs
